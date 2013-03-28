@@ -1,3 +1,3 @@
-# Yubi v1.0.1
+# Yubi v1.0.2
 
 #### A touch target bookmarklet

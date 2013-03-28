@@ -1,4 +1,4 @@
-/*Yubi v1.0.1, Copyright (C) 2013 Kyle Barrow
+/*Yubi v1.0.2, Copyright (C) 2013 Kyle Barrow
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -117,7 +117,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		lightbox = d.createElement('div');
 
-		lightbox.setAttribute('style','z-index: 10000; padding: 0; margin: 0; background-color: rgba(255, 255, 255, 0.9); color: #000;position: absolute; width: '+d.body.offsetWidth+'px; height: '+d.body.offsetHeight+'px; top: 0; left: 0; font-family:\'Helvetica\', \'Helvetica Neue\', \'Roboto\', sans-serif; font-size: 12px; line-height: 1.5em; font-weight: 200; text-align: center');
+		lightbox.setAttribute('style','z-index: 10000; padding: 0; margin: 0; background-color: rgba(255, 255, 255, 0.9); color: #000;position: fixed; top: 0; bottom: 0; left: 0; right: 0; font-family:\'Helvetica\', \'Helvetica Neue\', \'Roboto\', sans-serif; font-size: 12px; line-height: 1.5em; font-weight: 200; text-align: center');
 
 		lightbox.className = yubiclass;
 		// SVG doesn't support className
@@ -125,7 +125,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		thumb.setAttribute('class', yubiclass);
 
 
-		dialog.setAttribute('style','width: 280px; height: '+dialogheight+'px; border-radius: 10px; background-color: rgb(255, 255, 255); position: absolute; top: '+Math.round(w.innerHeight/2 + d.body.scrollTop)+'px; left: '+Math.round(w.innerWidth/2 + d.body.scrollLeft)+'px; margin-top: -'+(dialogheight/2)+'px; margin-left: -140px');
+		dialog.setAttribute('style','width: 280px; height: '+dialogheight+'px; border-radius: 10px; background-color: rgb(255, 255, 255); position: fixed; top: 50%; left: 50%; margin-top: -'+(dialogheight/2)+'px; margin-left: -140px');
 
 		// Required to work with sites with insane z-indexes
 		thumb.style.zIndex = 10000;
