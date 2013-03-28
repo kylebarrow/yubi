@@ -1,15 +1,17 @@
-/*Yubi v1.0.0, Copyright (C) 2013 Kyle Barrow
+/*Yubi v1.0.1, Copyright (C) 2013 Kyle Barrow
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
-(function() {
+(function () {
+
 	'use strict';
 
 	var w = window,
 		d = document,
+		i,
 		active,
 		activeoffset,
 		lightbox,
@@ -29,7 +31,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		svg.setAttribute('pointer-events', 'none');
 
 
-		for (var i=0; i < 2; i++)
+		for (i=0; i < 2; i+=1)
 		{
 			circles[i] = d.createElementNS(ns, 'circle');
 			circles[i].setAttribute('cx',center+1); // add 1 pixel to accomodate stroke
@@ -85,16 +87,33 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	}
 
+	function hasViewport() {
+
+		var metatags = document.getElementsByTagName('meta');
+
+		for (i=0; i < metatags.length; i+=1) {
+			if (metatags[i].getAttribute('name') === 'viewport') {
+				return true;
+			}
+
+		}
+
+		return false;
+
+	}
+
 	function showTargetSelector() {
 
-		var selector =  d.createDocumentFragment(),
-			dialog = d.createElement('div'),
+		var dialog = d.createElement('div'),
 			thumbselect = d.createElement('div'),
 			fingerselect = d.createElement('div'),
 			thumbtxt = d.createElement('div'),
 			fingertxt = d.createElement('div'),
 			thumb = drawTarget(52, 13),
-			finger = drawTarget(45, 6);
+			finger = drawTarget(45, 6),
+			nowarning =  hasViewport(),
+			warning = nowarning ? '' : '<div style=\'font-size:12px; padding-top: 10px\'><span style=\'color:#F00\'>WARNING:</span> This page has no viewport, touch size may be inaccurate on mobiles and tablets</div>',
+			dialogheight = nowarning ? 240 : 280;
 
 		lightbox = d.createElement('div');
 
@@ -106,7 +125,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		thumb.setAttribute('class', yubiclass);
 
 
-		dialog.setAttribute('style','width: 280px; height: 240px; border-radius: 10px; background-color: rgb(255, 255, 255); position: absolute; top: '+Math.round(w.innerHeight/2 + d.body.scrollTop)+'px; left: '+Math.round(w.innerWidth/2 + d.body.scrollLeft)+'px; margin-top: -120px; margin-left: -140px');
+		dialog.setAttribute('style','width: 280px; height: '+dialogheight+'px; border-radius: 10px; background-color: rgb(255, 255, 255); position: absolute; top: '+Math.round(w.innerHeight/2 + d.body.scrollTop)+'px; left: '+Math.round(w.innerWidth/2 + d.body.scrollLeft)+'px; margin-top: -'+(dialogheight/2)+'px; margin-left: -140px');
 
 		// Required to work with sites with insane z-indexes
 		thumb.style.zIndex = 10000;
@@ -128,15 +147,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		fingerselect.appendChild(fingertxt);
 
 
-		dialog.innerHTML = '<div style=\'padding:  20px 0 20px 0; font-size: 20px\'>Choose touch size</div>';
+		dialog.innerHTML = '<div style=\'padding:  20px 10px 20px 10px; font-size: 20px;\'>Choose touch size'+warning+'</div>';
 
 		dialog.appendChild(thumbselect);
 		dialog.appendChild(fingerselect);
 
 		lightbox.appendChild(dialog);
-		selector.appendChild(lightbox);
 
-		d.body.appendChild(selector);
+		d.body.appendChild(lightbox);
 
 		fingerselect.addEventListener('click',function(){targetSet(finger);}, false);
 		thumbselect.addEventListener('click',function(){targetSet(thumb);}, false);
@@ -147,7 +165,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	if(yubis.length > 0) {
 
 		// Work in reverse in case lightbox is still open
-		for (var i=yubis.length-1; i >= 0; i--)
+		for (i=yubis.length-1; i >= 0; i-= 1)
 		{
 			yubis[i].parentNode.removeChild(yubis[i]);
 		}
