@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Yubi Bookmarklet</title>
+<meta charset="utf-8">
+<style>
+
+body {
+	font-family: "Helvetica", "Helvetica Neue", "Roboto", sans-serif
+}
+
+</style>
+</head>
+<body>
+<p>Drag the Yubi bookmarklet to your bookmarks:</p>
+<a href="javascript:(function(){'use strict';function S(r,i){var s,o=[],u=r+i*2,a=u/2,f=[a,r/2];s=v[e](E,'svg');s[t]('width',u+2);s[t]('height',u+2);s[t]('pointer-events','none');for(var l=0;l<2;l++){o[l]=v[e](E,'circle');o[l][t]('cx',a+1);o[l][t]('cy',a+1);o[l][t]('r',f[l]);o[l][t]('stroke','white');o[l][t]('stroke-width',1);o[l][t]('stroke-opacity',.3*(l+1));o[l][t]('fill-opacity',.2*(l+1));o[l][t]('fill','red');s[n](o[l])}return s}function x(e){m[r].top=e.pageY-g+'px';m[r].left=e.pageX-g+'px'}function T(e){m=e;m[r].margin=0;g=Math.round(m.getBoundingClientRect().width/2);v[i][n](m);y[o][s](y);m[r].position='absolute';d[u](a,x,f);d[u]('mousemove',x,f);d[u]('touchstart',x,f)}function N(){var e=v.createDocumentFragment(),s=v[l](c),o=v[l](c),m=v[l](c),g=v[l](c),w=v[l](c),E=S(52,13),x=S(45,6);y=v[l](c);y[t](r,'z-index: 10000; padding: 0; margin: 0; background-color: rgba(255, 255, 255, 0.9); color: #000;position: absolute; width: '+v[i].offsetWidth+'px; height: '+v[i].offsetHeight+'px; top: 0; left: 0; font-family:\'Helvetica\', \'Helvetica Neue\', \'Roboto\', sans-serif; font-size: 12px; line-height: 1.5em; font-weight: 200; text-align: center');y.className=b;x[t](h,b);E[t](h,b);s[t](r,'width: 280px; height: 240px; border-radius: 10px; background-color: rgb(255, 255, 255); position: absolute; top: '+Math.round(d.innerHeight/2+v[i].scrollTop)+'px; left: '+Math.round(d.innerWidth/2+v[i].scrollLeft)+'px; margin-top: -120px; margin-left: -140px');E[r].zIndex=1e4;x[r].zIndex=1e4;x[r].marginTop='11px';x[r].marginBottom='10px';o[t](r,'float: left; width: 115px; cursor: pointer; margin-left: 20px');o[n](E);m[t](r,'float: right; width: 115px; cursor: pointer; margin-right: 20px');m[n](x);g[p]='<div style=\'font-size: 16px; padding: 10px 0 10px 0\'>Thumb</div><div>8mm target</div><div>2mm boundary</div>';o[n](g);w[p]='<div style=\'font-size: 16px; padding:  10px 0 10px 0\'>Finger</div><div>7mm target</div><div>1mm boundary</div>';m[n](w);s[p]='<div style=\'padding:  20px 0 20px 0; font-size: 20px\'>Choose touch size</div>';s[n](o);s[n](m);y[n](s);e[n](y);v[i][n](e);m[u](a,function(){T(x)},f);o[u](a,function(){T(E)},f)}var e='createElementNS',t='setAttribute',n='appendChild',r='style',i='body',s='removeChild',o='parentNode',u='addEventListener',a='click',f=!1,l='createElement',c='div',h='class',p='innerHTML',d=window,v=document,m,g,y,b='_yubi-'+ +(new Date),w=v.querySelectorAll('[class|=_yubi]'),E='http://www.w3.org/2000/svg';if(w.length>0)for(var C=w.length-1;C>=0;C--)w[C][o][s](w[C]);else N()})();">Yubi</a>
+</body>
+</html>
