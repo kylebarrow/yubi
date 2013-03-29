@@ -1,4 +1,4 @@
-/*Yubi v1.0.2, Copyright (C) 2013 Kyle Barrow
+/*Yubi v1.0.3, Copyright (C) 2013 Kyle Barrow
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -16,8 +16,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		activeoffset,
 		lightbox,
 		yubiclass = '_yubi-' + (+new Date()),
-		yubis = d.querySelectorAll('[class|=_yubi]'), // wildcard selector to test if yubi's already on page
-		ns = 'http://www.w3.org/2000/svg'; // because I don't like typing
+		yubis = d.querySelectorAll('[class|=_yubi]'), // Wildcard selector to test if yubi's already on page
+		ns = 'http://www.w3.org/2000/svg';
 
 	// Generate touch target SVG
 	function drawTarget(target, boundary) {
@@ -26,21 +26,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		svg =  d.createElementNS(ns, 'svg');
 
-		svg.setAttribute('width',size+2); // add 2 pixels to accomodate stroke
+		svg.setAttribute('width',size+2); // Add 2 pixels to accomodate stroke
 		svg.setAttribute('height',size+2);
 		svg.setAttribute('pointer-events', 'none');
 
-
+		// Generate boundary and touch circles
 		for (i=0; i < 2; i+=1)
 		{
 			circles[i] = d.createElementNS(ns, 'circle');
-			circles[i].setAttribute('cx',center+1); // add 1 pixel to accomodate stroke
+			circles[i].setAttribute('cx',center+1); // Add 1 pixel to accomodate stroke
 			circles[i].setAttribute('cy',center+1);
 			circles[i].setAttribute('r',radius[i]);
 			circles[i].setAttribute('stroke','white');
 			circles[i].setAttribute('stroke-width',1);
 
-			// boundary circle 0.2, target circle 0.4
+			// Boundary circle 0.2, target circle 0.4
 			circles[i].setAttribute('stroke-opacity',0.3 * (i+1));
 			circles[i].setAttribute('fill-opacity',0.2 * (i+1));
 
@@ -63,13 +63,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	// Set active target
 	function targetSet(target) {
 
-		// global target SVG
 		active = target;
 
-		// clear margin on finger target
+		// Clear margin on finger target
 		active.style.margin = 0;
 
-		// global offset so we don't calculate this on every movement
+		// So we don't calculate this on every movement
 		activeoffset = Math.round(active.getBoundingClientRect().width/2);
 
 
@@ -87,6 +86,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	}
 
+	// Check if viewport exists
 	function hasViewport() {
 
 		var metatags = document.getElementsByTagName('meta');
@@ -102,6 +102,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 	}
 
+	// Touch size dialog
 	function showTargetSelector() {
 
 		var dialog = d.createElement('div'),
@@ -112,8 +113,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			thumb = drawTarget(52, 13),
 			finger = drawTarget(45, 6),
 			nowarning =  hasViewport(),
-			warning = nowarning ? '' : '<div style=\'font-size:12px; padding-top: 10px\'><span style=\'color:#F00\'>WARNING:</span> This page has no viewport, touch size may be inaccurate on mobiles and tablets</div>',
-			dialogheight = nowarning ? 240 : 280;
+			warning = nowarning ? '' : '<div style=\'font-size:12px; padding-top: 10px\'><span style=\'color:#F00\'>WARNING:</span> This page has no viewport metatag, touch size may be inaccurate in browsers that rely on this to set viewport scale</div>',
+			dialogheight = nowarning ? 240 : 300;
 
 		lightbox = d.createElement('div');
 
@@ -125,9 +126,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		thumb.setAttribute('class', yubiclass);
 
 
-		dialog.setAttribute('style','width: 280px; height: '+dialogheight+'px; border-radius: 10px; background-color: rgb(255, 255, 255); position: fixed; top: 50%; left: 50%; margin-top: -'+(dialogheight/2)+'px; margin-left: -140px');
+		dialog.setAttribute('style','width: 280px; height: '+dialogheight+'px; border-radius: 10px; background-color: #fff; position: fixed; top: 50%; left: 50%; margin-top: -'+(dialogheight/2)+'px; margin-left: -140px');
 
-		// Required to work with sites with insane z-indexes
+		// Required to work with sites with insane z-indexes, shakes fist
 		thumb.style.zIndex = 10000;
 		finger.style.zIndex = 10000;
 
