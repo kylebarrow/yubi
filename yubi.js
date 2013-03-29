@@ -1,4 +1,4 @@
-/*Yubi v1.0.3, Copyright (C) 2013 Kyle Barrow
+/*Yubi v1.0.4, Copyright (C) 2013 Kyle Barrow
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -65,12 +65,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 		active = target;
 
-		// Clear margin on finger target
-		active.style.margin = 0;
-
 		// So we don't calculate this on every movement
 		activeoffset = Math.round(active.getBoundingClientRect().width/2);
-
 
 		d.body.appendChild(active);
 
@@ -113,7 +109,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			thumb = drawTarget(52, 13),
 			finger = drawTarget(45, 6),
 			nowarning =  hasViewport(),
-			warning = nowarning ? '' : '<div style=\'font-size:12px; padding-top: 10px\'><span style=\'color:#F00\'>WARNING:</span> This page has no viewport metatag, touch size may be inaccurate in browsers that rely on this to set viewport scale</div>',
+			warning = nowarning ? '' : '<div style=\'font-size:12px; padding-top: 10px\'><span style=\'color:#F00\'>WARNING:</span> This page has no viewport meta tag, touch size may be inaccurate in browsers that rely on this to set viewport scale</div>',
 			dialogheight = nowarning ? 240 : 300;
 
 		lightbox = d.createElement('div');
@@ -132,19 +128,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		thumb.style.zIndex = 10000;
 		finger.style.zIndex = 10000;
 
-		finger.style.marginTop = '11px';
-		finger.style.marginBottom = '10px';
-
 		thumbselect.setAttribute('style','float: left; width: 115px; cursor: pointer; margin-left: 20px');
 		thumbselect.appendChild(thumb);
 
-		fingerselect.setAttribute('style','float: right; width: 115px; cursor: pointer; margin-right: 20px');
+		fingerselect.setAttribute('style','float: right; width: 115px; cursor: pointer; margin-right: 20px; padding-top: 11px');
 		fingerselect.appendChild(finger);
 
 		thumbtxt.innerHTML = '<div style=\'font-size: 16px; padding: 10px 0 10px 0\'>Thumb</div><div>8mm target</div><div>2mm boundary</div>';
 		thumbselect.appendChild(thumbtxt);
 
-		fingertxt.innerHTML = '<div style=\'font-size: 16px; padding:  10px 0 10px 0\'>Finger</div><div>7mm target</div><div>1mm boundary</div>';
+		fingertxt.innerHTML = '<div style=\'font-size: 16px; padding:  20px 0 10px 0\'>Finger</div><div>7mm target</div><div>1mm boundary</div>';
 		fingerselect.appendChild(fingertxt);
 
 
