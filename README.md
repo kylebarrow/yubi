@@ -2,4 +2,4 @@
 
 #### A touch target bookmarklet
 
-For more info, visit [http://barrow.io/yubi](http://barrow.io/yubi).
+For more info, visit [https://barrow.io/yubi](https://barrow.io/yubi).
