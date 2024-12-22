@@ -20,7 +20,7 @@ There are numerous usability studies with varying touch size recommendations but
 
 ## Limitations
 
-In a prefect would, I would set the touch size using millimetres but unfortunately [this doesn’t work](/physical-css-units) so I have to convert millimetres to pixels. To do this, I calculated millimetre to pixel conversions for a number of popular devices when viewport width is set to `device-width` (device independent pixels):
+In a prefect would, I would set the touch size using millimetres but unfortunately this doesn’t work so I have to convert millimetres to pixels. To do this, I calculated millimetre to pixel conversions for a number of popular devices when viewport width is set to `device-width` (device independent pixels):
 
 ### Thumb size pixel conversions
 
